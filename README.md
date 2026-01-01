@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Tahun Baru - Selamat Tahun Baru 2026!</title>
+    <title>Cloud Tahun Baru 2026 - GitHub Pages</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -75,6 +75,25 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .github-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .github-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
         
         .new-year-badge {
@@ -453,6 +472,50 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
+        .github-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .github-section h2 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .github-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .github-stat {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .github-stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .github-stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
         footer {
             text-align: center;
             padding: 30px 0;
@@ -474,6 +537,12 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
             .countdown {
                 flex-wrap: wrap;
             }
@@ -529,6 +598,23 @@
             z-index: 1;
             pointer-events: none;
         }
+        
+        /* Animasi untuk kembang api */
+        @keyframes fireworkAnimation {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
+        }
+        
+        @keyframes fallingSnow {
+            0% { transform: translateY(-10px) translateX(0); opacity: 0.8; }
+            100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
+        }
+        
+        @keyframes confettiAnimation {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(20px) rotate(180deg); opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
@@ -547,8 +633,14 @@
                 <i class="fas fa-cloud"></i>
                 <h1>Cloud Tahun Baru</h1>
             </div>
-            <div class="new-year-badge">
-                <span id="yearDisplay">2026</span>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="https://github.com" class="github-badge" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <div class="new-year-badge">
+                    <span id="yearDisplay">2026</span>
+                </div>
             </div>
             <div class="user-info">
                 <i class="fas fa-user-circle"></i>
@@ -559,6 +651,9 @@
         <section class="new-year-message">
             <h2>Selamat Tahun Baru 2026! 🎉</h2>
             <p>Semoga di tahun yang baru ini, semua file dan kenangan indah tersimpan aman di cloud kebahagiaan kita.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">
+                <i class="fab fa-github"></i> Hosting di GitHub Pages | Deploy otomatis dengan GitHub Actions
+            </p>
         </section>
         
         <div class="countdown" id="countdown">
@@ -586,6 +681,9 @@
             <button class="btn btn-secondary" id="memoryBtn">
                 <i class="fas fa-images"></i> Lihat Kenangan 2025
             </button>
+            <button class="btn btn-secondary" id="githubBtn">
+                <i class="fab fa-github"></i> Lihat di GitHub
+            </button>
         </div>
         
         <section class="files-container">
@@ -593,7 +691,7 @@
                 <h2><i class="fas fa-file-alt"></i> File Spesial Tahun Baru</h2>
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cari kenangan spesial...">
+                    <input type="text" placeholder="Cari kenangan spesial..." id="searchInput">
                 </div>
             </div>
             
@@ -609,42 +707,71 @@
             </div>
         </section>
         
+        <section class="github-section">
+            <h2><i class="fab fa-github"></i> Statistik GitHub</h2>
+            <p>Proyek ini dihosting di GitHub Pages dengan teknologi modern:</p>
+            <div class="github-stats">
+                <div class="github-stat">
+                    <div class="github-stat-number">100%</div>
+                    <div class="github-stat-label">Uptime</div>
+                </div>
+                <div class="github-stat">
+                    <div class="github-stat-number">2026</div>
+                    <div class="github-stat-label">Tahun Aktif</div>
+                </div>
+                <div class="github-stat">
+                    <div class="github-stat-number">∞</div>
+                    <div class="github-stat-label">Penyimpanan</div>
+                </div>
+                <div class="github-stat">
+                    <div class="github-stat-number">24/7</div>
+                    <div class="github-stat-label">Akses Global</div>
+                </div>
+            </div>
+        </section>
+        
         <footer>
             <p>
                 <i class="fas fa-firework firework-icon"></i>
-                Cloud Tahun Baru 2026 - Semoga Tahun Ini Penuh Kebahagiaan dan Kesuksesan!
+                Cloud Tahun Baru 2026 - Hosting di GitHub Pages
                 <i class="fas fa-firework firework-icon"></i>
             </p>
-            <p style="margin-top: 10px;">© 2025-2026 Cloud Tahun Baru. Seluruh kenangan dilindungi.</p>
+            <p style="margin-top: 10px;">© 2025-2026 Cloud Tahun Baru. Seluruh kenangan dilindungi. | 
+                <a href="https://github.com" style="color: #ffd700; text-decoration: none;" target="_blank">
+                    <i class="fab fa-github"></i> GitHub Repository
+                </a>
+            </p>
         </footer>
     </div>
 
     <script>
-        // Data file spesial Tahun Baru
+        // Data file spesial Tahun Baru (diperbarui untuk 2026)
         const newYearFiles = [
-            { name: "Foto Pesta Tahun Baru.jpg", type: "image", size: "4.2 MB", date: "1 Jan 2025", color: "#FF8C00", icon: "fa-camera" },
-            { name: "Video Kembang Api.mp4", type: "video", size: "32.5 MB", date: "1 Jan 2025", color: "#FF4500", icon: "fa-fire" },
-            { name: "Resolusi 2025.pdf", type: "document", size: "1.1 MB", date: "31 Des 2023", color: "#FFD700", icon: "fa-file-alt" },
-            { name: "Playlist Lagu Tahun Baru.mp3", type: "audio", size: "18.7 MB", date: "30 Des 2023", color: "#1E90FF", icon: "fa-music" },
-            { name: "Ucapan Selamat Tahun Baru.docx", type: "document", size: "0.8 MB", date: "29 Des 2023", color: "#32CD32", icon: "fa-envelope" },
-            { name: "Foto Bersama Keluarga.jpg", type: "image", size: "5.3 MB", date: "25 Des 2023", color: "#9370DB", icon: "fa-users" }
+            { name: "Foto Pesta Tahun Baru 2026.jpg", type: "image", size: "5.2 MB", date: "1 Jan 2026", color: "#FF8C00", icon: "fa-camera" },
+            { name: "Video Kembang Api 2026.mp4", type: "video", size: "45.5 MB", date: "1 Jan 2026", color: "#FF4500", icon: "fa-fire" },
+            { name: "Resolusi 2026.pdf", type: "document", size: "1.3 MB", date: "31 Des 2025", color: "#FFD700", icon: "fa-file-alt" },
+            { name: "Playlist Lagu Tahun Baru 2026.mp3", type: "audio", size: "22.7 MB", date: "30 Des 2025", color: "#1E90FF", icon: "fa-music" },
+            { name: "Ucapan Selamat Tahun Baru.docx", type: "document", size: "0.9 MB", date: "29 Des 2025", color: "#32CD32", icon: "fa-envelope" },
+            { name: "Foto Bersama Keluarga 2025.jpg", type: "image", size: "6.3 MB", date: "25 Des 2025", color: "#9370DB", icon: "fa-users" },
+            { name: "Proyek GitHub 2026.zip", type: "archive", size: "12.4 MB", date: "15 Des 2025", color: "#6A5ACD", icon: "fa-file-archive" },
+            { name: "Dokumentasi Website.md", type: "code", size: "0.5 MB", date: "10 Des 2025", color: "#20B2AA", icon: "fa-code" }
         ];
         
-        // Data resolusi Tahun Baru
+        // Data resolusi Tahun Baru 2026
         const resolutions = [
-            "Menyimpan lebih banyak kenangan bahagia di cloud",
-            "Berbagi lebih banyak file kebahagiaan dengan orang terdekat",
-            "Mengorganisir file kehidupan dengan lebih baik",
-            "Membuat backup rutin untuk kenangan berharga",
-            "Membersihkan file-file negatif dari penyimpanan"
+            "Belajar teknologi web terbaru di GitHub",
+            "Membuat lebih banyak proyek open source",
+            "Berkontribusi ke repository GitHub",
+            "Menggunakan GitHub Actions untuk CI/CD",
+            "Mempelajari GitHub Pages secara mendalam"
         ];
         
         // Fungsi untuk membuat efek kembang api
         function createFireworks() {
             const fireworksContainer = document.getElementById('fireworks');
-            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#FFFFFF'];
+            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#FFFFFF', '#1E90FF'];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 const firework = document.createElement('div');
                 firework.className = 'firework';
                 
@@ -666,17 +793,6 @@
                 
                 fireworksContainer.appendChild(firework);
             }
-            
-            // Tambahkan animasi CSS untuk kembang api
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fireworkAnimation {
-                    0% { transform: translateY(0) scale(1); opacity: 1; }
-                    50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
-                    100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
         }
         
         // Fungsi untuk membuat efek salju
@@ -700,22 +816,12 @@
                 
                 snowflakesContainer.appendChild(snowflake);
             }
-            
-            // Tambahkan animasi CSS untuk salju
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fallingSnow {
-                    0% { transform: translateY(-10px) translateX(0); opacity: 0.8; }
-                    100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
         }
         
         // Fungsi untuk membuat efek konfeti
         function createConfetti() {
             const confettiContainer = document.getElementById('confetti');
-            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#1E90FF', '#32CD32', '#9370DB'];
+            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#1E90FF', '#32CD32', '#9370DB', '#6A5ACD'];
             
             for (let i = 0; i < 150; i++) {
                 const confetti = document.createElement('div');
@@ -743,33 +849,23 @@
                 
                 confettiContainer.appendChild(confetti);
             }
-            
-            // Tambahkan animasi CSS untuk konfeti
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes confettiAnimation {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(20px) rotate(180deg); opacity: 0.5; }
-                }
-            `;
-            document.head.appendChild(style);
         }
         
-        // Fungsi untuk countdown (simulasi karena tahun baru sudah lewat)
+        // Fungsi untuk countdown menuju Tahun Baru 2026
         function setupCountdown() {
             const countdownContainer = document.getElementById('countdown');
             
-            // Untuk simulasi, kita buat countdown mundur dari 10 detik
-            let seconds = 10;
+            // Tanggal target: 1 Januari 2026
+            const targetDate = new Date('January 1, 2026 00:00:00').getTime();
             
+            // Render countdown awal
             const countdownItems = [
                 { id: 'days', label: 'HARI', value: '00' },
                 { id: 'hours', label: 'JAM', value: '00' },
                 { id: 'minutes', label: 'MENIT', value: '00' },
-                { id: 'seconds', label: 'DETIK', value: '10' }
+                { id: 'seconds', label: 'DETIK', value: '00' }
             ];
             
-            // Render countdown awal
             countdownItems.forEach(item => {
                 const countdownItem = document.createElement('div');
                 countdownItem.className = 'countdown-item';
@@ -782,44 +878,43 @@
             
             // Update countdown setiap detik
             const countdownInterval = setInterval(() => {
-                seconds--;
+                const now = new Date().getTime();
+                const distance = targetDate - now;
                 
-                if (seconds < 0) {
+                if (distance < 0) {
                     clearInterval(countdownInterval);
-                    document.getElementById('seconds').textContent = '00';
+                    document.querySelector('.new-year-message h2').textContent = 'SELAMAT TAHUN BARU 2026! 🎉🎊';
+                    document.querySelector('.new-year-message p').innerHTML = 'Tahun baru telah tiba! Semoga penuh berkah dan kebahagiaan!<br><small>Hosting di GitHub Pages</small>';
                     
                     // Tampilkan pesan tahun baru
-                    document.querySelector('.new-year-message h2').textContent = 'SELAMAT TAHUN BARU 2024! 🎉🎊';
-                    document.querySelector('.new-year-message p').textContent = 'Tahun baru telah tiba! Semoga penuh berkah dan kebahagiaan!';
-                    
-                    // Tambahkan efek suara (simulasi)
-                    playNewYearSound();
-                    
+                    showNewYearMessage();
                     return;
                 }
                 
-                // Format detik menjadi hari, jam, menit, detik (untuk simulasi)
-                const days = Math.floor(seconds / (24 * 60 * 60));
-                const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
-                const minutes = Math.floor((seconds % (60 * 60)) / 60);
-                const secs = seconds % 60;
+                // Hitung hari, jam, menit, detik
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
+                // Update tampilan
                 document.getElementById('days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = secs.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             }, 1000);
         }
         
-        // Fungsi untuk memainkan efek suara tahun baru (simulasi)
-        function playNewYearSound() {
-            // Dalam implementasi nyata, ini akan memainkan audio
-            console.log("Selamat Tahun Baru! 🎉🎊");
+        // Fungsi untuk menampilkan pesan tahun baru
+        function showNewYearMessage() {
+            // Tambahkan lebih banyak efek visual
+            createFireworks();
+            createConfetti();
             
             // Tampilkan alert khusus
             setTimeout(() => {
-                alert("🎉 SELAMAT TAHUN BARU 2024! 🎊\n\nSemoga tahun ini membawa kebahagiaan, kesehatan, dan kesuksesan untuk kita semua!");
-            }, 500);
+                alert("🎉 SELAMAT TAHUN BARU 2026! 🎊\n\nWebsite ini dihosting di GitHub Pages!\n\nSemoga tahun ini membawa kebahagiaan, kesehatan, dan kesuksesan untuk kita semua!");
+            }, 1000);
         }
         
         // Render file spesial Tahun Baru
@@ -830,6 +925,7 @@
             newYearFiles.forEach(file => {
                 const fileCard = document.createElement('div');
                 fileCard.className = 'file-card';
+                fileCard.setAttribute('data-name', file.name.toLowerCase());
                 
                 fileCard.innerHTML = `
                     <div class="file-icon" style="background-color: ${file.color}20; color: ${file.color};">
@@ -841,13 +937,13 @@
                         <span>${file.date}</span>
                     </div>
                     <div class="file-actions">
-                        <button class="file-action-btn" title="Lihat">
+                        <button class="file-action-btn" title="Lihat" onclick="viewFile('${file.name}')">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button class="file-action-btn" title="Bagikan">
+                        <button class="file-action-btn" title="Bagikan" onclick="shareFile('${file.name}')">
                             <i class="fas fa-share-alt"></i>
                         </button>
-                        <button class="file-action-btn" title="Simpan">
+                        <button class="file-action-btn" title="Simpan" onclick="downloadFile('${file.name}')">
                             <i class="fas fa-download"></i>
                         </button>
                     </div>
@@ -863,70 +959,4 @@
             resolutionList.innerHTML = '';
             
             resolutions.forEach((resolution, index) => {
-                const resolutionItem = document.createElement('div');
-                resolutionItem.className = 'resolution-item';
-                
-                resolutionItem.innerHTML = `
-                    <div class="resolution-checkbox" data-index="${index}">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="resolution-text">${resolution}</div>
-                `;
-                
-                resolutionList.appendChild(resolutionItem);
-            });
-            
-            // Tambahkan event listener untuk checkbox
-            document.querySelectorAll('.resolution-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('click', function() {
-                    this.classList.toggle('checked');
-                    
-                    // Hitung berapa banyak resolusi yang sudah dicentang
-                    const checkedCount = document.querySelectorAll('.resolution-checkbox.checked').length;
-                    const totalCount = resolutions.length;
-                    
-                    // Update storage bar berdasarkan resolusi yang dicentang
-                    const progressPercentage = 65 + (checkedCount / totalCount) * 35;
-                    document.querySelector('.storage-used').style.width = `${progressPercentage}%`;
-                    document.querySelector('.storage-stats').innerHTML = `
-                        <span>${(6.5 + checkedCount * 0.7).toFixed(1)} GB dari 10 GB kenangan tersimpan</span>
-                        <span>${Math.round(progressPercentage)}%</span>
-                    `;
-                });
-            });
-        }
-        
-        // Event listener untuk tombol
-        document.getElementById('uploadBtn').addEventListener('click', function() {
-            alert('Siap mengunggah kenangan indah tahun baru Anda! 🎉');
-        });
-        
-        document.getElementById('shareBtn').addEventListener('click', function() {
-            alert('Bagikan kebahagiaan tahun baru dengan orang-orang terkasih! ❤️');
-        });
-        
-        document.getElementById('memoryBtn').addEventListener('click', function() {
-            alert('Melihat kembali kenangan indah tahun 2023... 📸');
-        });
-        
-        // Update tahun display
-        document.getElementById('yearDisplay').textContent = new Date().getFullYear();
-        
-        // Inisialisasi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            createFireworks();
-            createSnowflakes();
-            createConfetti();
-            setupCountdown();
-            renderFiles();
-            renderResolutions();
-            
-            // Animasi untuk progress bar
-            const storageBar = document.querySelector('.storage-used');
-            setTimeout(() => {
-                storageBar.style.width = '65%';
-            }, 300);
-        });
-    </script>
-</body>
-</html>
+                const resolutionItem = document.createElement
