@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Tahun Baru - Selamat Tahun Baru 2026!</title>
+    <title>Cloud Tahun Baru 2026 - GitHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,67 +14,139 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0c0c2e 0%, #1a1a3e 50%, #2d1b69 100%);
+            background: linear-gradient(135deg, #0a0a23 0%, #1a1a3e 100%);
             color: #fff;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Efek Kembang Api */
-        .fireworks {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #fff;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 40px;
         }
         
         .logo i {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: #ffd700;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
         }
         
         .logo h1 {
-            font-size: 2rem;
-            background: linear-gradient(to right, #ffd700, #ff8c00, #ff4500);
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+        
+        .nav-item i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .storage-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .storage-info h3 {
+            color: #ffd700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .storage-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .storage-used {
+            height: 100%;
+            background: linear-gradient(to right, #ff8c00, #ffd700);
+            border-radius: 4px;
+            width: 65%;
+        }
+        
+        .storage-stats {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 25px;
+            overflow-y: auto;
+        }
+        
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-left h2 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .header-left p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
         
         .new-year-badge {
@@ -91,209 +163,27 @@
             to { box-shadow: 0 0 20px #ffd700, 0 0 30px #ff8c00; }
         }
         
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .user-info i {
-            color: #ffd700;
-            font-size: 1.5rem;
-        }
-        
-        .new-year-message {
-            background: linear-gradient(45deg, rgba(255, 140, 0, 0.2), rgba(255, 215, 0, 0.2));
-            border-left: 5px solid #ffd700;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .new-year-message h2 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ffd700, #ff8c00);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .new-year-message p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        /* File Grid */
+        .files-section {
             margin-bottom: 40px;
         }
         
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 25px 15px;
-            border-radius: 15px;
-            min-width: 100px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        
-        .countdown-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .countdown-number {
-            font-size: 2.8rem;
-            font-weight: bold;
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .countdown-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 5px;
-        }
-        
-        .storage-info {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .storage-info h2 {
-            margin-bottom: 15px;
-            color: #ffd700;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .storage-bar {
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        
-        .storage-used {
-            height: 100%;
-            background: linear-gradient(to right, #ff8c00, #ffd700);
-            border-radius: 10px;
-            width: 65%;
-            transition: width 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .storage-used::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .storage-stats {
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            color: #0c0c2e;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-        }
-        
-        .files-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .files-header {
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
         
-        .files-header h2 {
-            color: #ffd700;
+        .section-header h3 {
             font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #ffd700;
         }
         
         .search-box {
             display: flex;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             padding: 10px 15px;
             width: 300px;
@@ -313,13 +203,9 @@
             color: white;
         }
         
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
         .files-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
         }
         
@@ -334,7 +220,7 @@
         }
         
         .file-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 215, 0, 0.3);
         }
@@ -350,150 +236,181 @@
         }
         
         .file-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         
         .file-name {
             font-weight: 600;
             margin-bottom: 5px;
             color: white;
+            font-size: 0.95rem;
         }
         
         .file-details {
             display: flex;
             justify-content: space-between;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-top: 10px;
         }
         
-        .file-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-        
-        .file-action-btn {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: color 0.2s;
-        }
-        
-        .file-action-btn:hover {
-            color: #ffd700;
-        }
-        
-        .new-year-resolution {
+        /* Upload Section */
+        .upload-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px dashed rgba(255, 215, 0, 0.3);
+            text-align: center;
         }
         
-        .new-year-resolution h2 {
+        .upload-icon {
+            font-size: 3rem;
             color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text h3 {
             font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text p {
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
-            display: flex;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            color: #0a0a23;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .resolution-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .resolution-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
             transition: all 0.3s;
         }
         
-        .resolution-item:hover {
-            background: rgba(255, 255, 255, 0.06);
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
         }
         
-        .resolution-checkbox {
-            width: 24px;
-            height: 24px;
+        /* Recent Activity */
+        .activity-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            border: 2px solid rgba(255, 215, 0, 0.5);
+            background-color: rgba(255, 215, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
+            color: #ffd700;
         }
         
-        .resolution-checkbox.checked {
-            background: #ffd700;
-            color: #0c0c2e;
+        .activity-details h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
         }
         
-        .resolution-text {
-            flex-grow: 1;
+        .activity-details p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        /* GitHub Info */
+        .github-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .github-info i {
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+        
+        .github-info span {
             color: rgba(255, 255, 255, 0.9);
         }
         
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 30px;
-        }
-        
-        .firework-icon {
-            color: #ffd700;
-            margin: 0 5px;
-            animation: bounce 1s infinite alternate;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .main-content {
+                margin-left: 220px;
+            }
         }
         
         @media (max-width: 768px) {
-            .countdown {
-                flex-wrap: wrap;
-            }
-            
-            .countdown-item {
-                min-width: 80px;
-                padding: 15px 10px;
-            }
-            
-            .countdown-number {
-                font-size: 2rem;
-            }
-            
-            .action-buttons {
+            body {
                 flex-direction: column;
             }
             
-            .btn {
+            .sidebar {
                 width: 100%;
-                justify-content: center;
+                height: auto;
+                position: relative;
+                padding: 20px;
+            }
+            
+            .nav-menu {
+                flex-direction: row;
+                overflow-x: auto;
+                margin-bottom: 20px;
+            }
+            
+            .nav-item {
+                white-space: nowrap;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .files-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
             .search-box {
@@ -501,328 +418,225 @@
                 margin-top: 15px;
             }
             
-            .files-header {
+            .section-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
-            .new-year-message h2 {
-                font-size: 1.8rem;
-            }
         }
         
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            color: white;
-            font-size: 1rem;
-            opacity: 0.8;
-            z-index: 1;
-            pointer-events: none;
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
-        .confetti {
+        .new-year-badge {
+            animation: pulse 2s infinite, glow 2s infinite alternate;
+        }
+        
+        /* Efek kembang api sederhana */
+        .firework {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            opacity: 0.8;
-            z-index: 1;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
             pointer-events: none;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <!-- Efek Kembang Api -->
-    <div class="fireworks" id="fireworks"></div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-cloud"></i>
+            <h1>Cloud 2026</h1>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-folder"></i>
+                <span>File Saya</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-share-alt"></i>
+                <span>Dibagikan</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Terbaru</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-star"></i>
+                <span>Favorit</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-trash"></i>
+                <span>Sampah</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+        </div>
+        
+        <div class="storage-info">
+            <h3>Penyimpanan</h3>
+            <div class="storage-bar">
+                <div class="storage-used" id="storageBar"></div>
+            </div>
+            <div class="storage-stats">
+                <span>6.5 GB digunakan</span>
+                <span>65%</span>
+            </div>
+        </div>
+    </div>
     
-    <!-- Efek Salju -->
-    <div id="snowflakes"></div>
-    
-    <!-- Efek Konfeti -->
-    <div id="confetti"></div>
-    
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-cloud"></i>
-                <h1>Cloud Tahun Baru</h1>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="main-header">
+            <div class="header-left">
+                <h2>Selamat Tahun Baru 2026! 🎉</h2>
+                <p>Selamat datang di Cloud Storage dengan tema Tahun Baru</p>
             </div>
             <div class="new-year-badge">
                 <span id="yearDisplay">2026</span>
             </div>
-            <div class="user-info">
-                <i class="fas fa-user-circle"></i>
-                <span>Selamat Tahun Baru!</span>
-            </div>
-        </header>
-        
-        <section class="new-year-message">
-            <h2>Selamat Tahun Baru 2026! 🎉</h2>
-            <p>Semoga di tahun yang baru ini, semua file dan kenangan indah tersimpan aman di cloud kebahagiaan kita.</p>
-        </section>
-        
-        <div class="countdown" id="countdown">
-            <!-- Countdown akan diisi oleh JavaScript -->
         </div>
         
-        <section class="storage-info">
-            <h2><i class="fas fa-cloud-upload-alt"></i> Penyimpanan Kenangan 2025</h2>
-            <div class="storage-bar">
-                <div class="storage-used"></div>
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
             </div>
-            <div class="storage-stats">
-                <span>6.5 GB dari 10 GB kenangan tersimpan</span>
-                <span>65%</span>
+            <div class="upload-text">
+                <h3>Unggah Kenangan Tahun Baru</h3>
+                <p>Seret dan lepas file di sini atau klik untuk mengunggah</p>
             </div>
-        </section>
-        
-        <div class="action-buttons">
-            <button class="btn btn-primary" id="uploadBtn">
-                <i class="fas fa-cloud-upload-alt"></i> Unggah Kenangan Baru
-            </button>
-            <button class="btn btn-secondary" id="shareBtn">
-                <i class="fas fa-share-alt"></i> Bagikan Kebahagiaan
-            </button>
-            <button class="btn btn-secondary" id="memoryBtn">
-                <i class="fas fa-images"></i> Lihat Kenangan 2025
+            <button class="upload-btn" id="uploadBtn">
+                <i class="fas fa-cloud-upload-alt"></i>
+                Unggah File
             </button>
         </div>
         
-        <section class="files-container">
-            <div class="files-header">
-                <h2><i class="fas fa-file-alt"></i> File Spesial Tahun Baru</h2>
+        <!-- Recent Files Section -->
+        <div class="files-section">
+            <div class="section-header">
+                <h3>File Terbaru</h3>
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cari kenangan spesial...">
+                    <input type="text" placeholder="Cari file...">
                 </div>
             </div>
             
             <div class="files-grid" id="filesGrid">
                 <!-- File akan ditambahkan di sini oleh JavaScript -->
             </div>
-        </section>
+        </div>
         
-        <section class="new-year-resolution">
-            <h2><i class="fas fa-star"></i> Resolusi Cloud 2026</h2>
-            <div class="resolution-list" id="resolutionList">
-                <!-- Resolusi akan ditambahkan di sini oleh JavaScript -->
+        <!-- Recent Activity -->
+        <div class="activity-section">
+            <h3 style="color: #ffd700; margin-bottom: 20px;">Aktivitas Terbaru</h3>
+            <div class="activity-list" id="activityList">
+                <!-- Aktivitas akan ditambahkan di sini oleh JavaScript -->
             </div>
-        </section>
+        </div>
         
-        <footer>
-            <p>
-                <i class="fas fa-firework firework-icon"></i>
-                Cloud Tahun Baru 2026 - Semoga Tahun Ini Penuh Kebahagiaan dan Kesuksesan!
-                <i class="fas fa-firework firework-icon"></i>
-            </p>
-            <p style="margin-top: 10px;">© 2025-2026 Cloud Tahun Baru. Seluruh kenangan dilindungi.</p>
-        </footer>
+        <!-- GitHub Info -->
+        <div class="github-info">
+            <i class="fab fa-github"></i>
+            <span>Website ini dihosting di GitHub Pages. Klik untuk melihat repository.</span>
+        </div>
     </div>
 
     <script>
-        // Data file spesial Tahun Baru
+        // Data file untuk Tahun Baru 2026
         const newYearFiles = [
-            { name: "Foto Pesta Tahun Baru.jpg", type: "image", size: "4.2 MB", date: "1 Jan 2025", color: "#FF8C00", icon: "fa-camera" },
-            { name: "Video Kembang Api.mp4", type: "video", size: "32.5 MB", date: "1 Jan 2025", color: "#FF4500", icon: "fa-fire" },
-            { name: "Resolusi 2025.pdf", type: "document", size: "1.1 MB", date: "31 Des 2023", color: "#FFD700", icon: "fa-file-alt" },
-            { name: "Playlist Lagu Tahun Baru.mp3", type: "audio", size: "18.7 MB", date: "30 Des 2023", color: "#1E90FF", icon: "fa-music" },
-            { name: "Ucapan Selamat Tahun Baru.docx", type: "document", size: "0.8 MB", date: "29 Des 2023", color: "#32CD32", icon: "fa-envelope" },
-            { name: "Foto Bersama Keluarga.jpg", type: "image", size: "5.3 MB", date: "25 Des 2023", color: "#9370DB", icon: "fa-users" }
+            { 
+                name: "Foto Tahun Baru.jpg", 
+                type: "image", 
+                size: "4.2 MB", 
+                date: "1 Jan 2026", 
+                color: "#FF8C00", 
+                icon: "fa-image" 
+            },
+            { 
+                name: "Video Perayaan.mp4", 
+                type: "video", 
+                size: "32.5 MB", 
+                date: "1 Jan 2026", 
+                color: "#FF4500", 
+                icon: "fa-video" 
+            },
+            { 
+                name: "Resolusi 2026.pdf", 
+                type: "document", 
+                size: "1.1 MB", 
+                date: "31 Des 2025", 
+                color: "#FFD700", 
+                icon: "fa-file-pdf" 
+            },
+            { 
+                name: "Lagu Tahun Baru.mp3", 
+                type: "audio", 
+                size: "8.7 MB", 
+                date: "30 Des 2025", 
+                color: "#1E90FF", 
+                icon: "fa-music" 
+            },
+            { 
+                name: "Dokumen GitHub.md", 
+                type: "code", 
+                size: "0.5 MB", 
+                date: "15 Des 2025", 
+                color: "#20B2AA", 
+                icon: "fa-code" 
+            },
+            { 
+                name: "Foto Keluarga.jpg", 
+                type: "image", 
+                size: "5.3 MB", 
+                date: "25 Des 2025", 
+                color: "#9370DB", 
+                icon: "fa-users" 
+            }
         ];
         
-        // Data resolusi Tahun Baru
-        const resolutions = [
-            "Menyimpan lebih banyak kenangan bahagia di cloud",
-            "Berbagi lebih banyak file kebahagiaan dengan orang terdekat",
-            "Mengorganisir file kehidupan dengan lebih baik",
-            "Membuat backup rutin untuk kenangan berharga",
-            "Membersihkan file-file negatif dari penyimpanan"
+        // Data aktivitas terbaru
+        const recentActivities = [
+            { 
+                action: "upload", 
+                description: "Anda mengunggah Foto Tahun Baru.jpg", 
+                time: "2 jam yang lalu",
+                icon: "fa-cloud-upload-alt"
+            },
+            { 
+                action: "share", 
+                description: "Budi membagikan Video Perayaan.mp4", 
+                time: "Kemarin",
+                icon: "fa-share-alt"
+            },
+            { 
+                action: "edit", 
+                description: "Siti mengedit Resolusi 2026.pdf", 
+                time: "2 hari yang lalu",
+                icon: "fa-edit"
+            },
+            { 
+                action: "github", 
+                description: "Proyek diupdate ke GitHub", 
+                time: "3 hari yang lalu",
+                icon: "fab fa-github"
+            }
         ];
         
-        // Fungsi untuk membuat efek kembang api
-        function createFireworks() {
-            const fireworksContainer = document.getElementById('fireworks');
-            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#FFFFFF'];
-            
-            for (let i = 0; i < 50; i++) {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                
-                // Posisi acak
-                firework.style.left = Math.random() * 100 + 'vw';
-                firework.style.top = Math.random() * 100 + 'vh';
-                
-                // Warna acak
-                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                firework.style.boxShadow = `0 0 10px ${firework.style.backgroundColor}, 0 0 20px ${firework.style.backgroundColor}`;
-                
-                // Ukuran acak
-                const size = Math.random() * 8 + 2;
-                firework.style.width = size + 'px';
-                firework.style.height = size + 'px';
-                
-                // Animasi
-                firework.style.animation = `fireworkAnimation ${Math.random() * 3 + 2}s infinite alternate`;
-                
-                fireworksContainer.appendChild(firework);
-            }
-            
-            // Tambahkan animasi CSS untuk kembang api
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fireworkAnimation {
-                    0% { transform: translateY(0) scale(1); opacity: 1; }
-                    50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
-                    100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Fungsi untuk membuat efek salju
-        function createSnowflakes() {
-            const snowflakesContainer = document.getElementById('snowflakes');
-            const snowflakeChars = ['❄', '✽', '❅', '❆', '•'];
-            
-            for (let i = 0; i < 100; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
-                snowflake.innerHTML = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
-                
-                // Posisi dan animasi acak
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
-                snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
-                snowflake.style.animationTimingFunction = 'linear';
-                snowflake.style.animationName = 'fallingSnow';
-                
-                snowflakesContainer.appendChild(snowflake);
-            }
-            
-            // Tambahkan animasi CSS untuk salju
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fallingSnow {
-                    0% { transform: translateY(-10px) translateX(0); opacity: 0.8; }
-                    100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Fungsi untuk membuat efek konfeti
-        function createConfetti() {
-            const confettiContainer = document.getElementById('confetti');
-            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF0000', '#1E90FF', '#32CD32', '#9370DB'];
-            
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                
-                // Posisi acak
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = Math.random() * 100 + 'vh';
-                
-                // Warna acak
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Bentuk acak (persegi atau lingkaran)
-                if (Math.random() > 0.5) {
-                    confetti.style.borderRadius = '50%';
-                }
-                
-                // Ukuran acak
-                const size = Math.random() * 12 + 3;
-                confetti.style.width = size + 'px';
-                confetti.style.height = size + 'px';
-                
-                // Animasi
-                confetti.style.animation = `confettiAnimation ${Math.random() * 5 + 3}s infinite alternate`;
-                
-                confettiContainer.appendChild(confetti);
-            }
-            
-            // Tambahkan animasi CSS untuk konfeti
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes confettiAnimation {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(20px) rotate(180deg); opacity: 0.5; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Fungsi untuk countdown (simulasi karena tahun baru sudah lewat)
-        function setupCountdown() {
-            const countdownContainer = document.getElementById('countdown');
-            
-            // Untuk simulasi, kita buat countdown mundur dari 10 detik
-            let seconds = 10;
-            
-            const countdownItems = [
-                { id: 'days', label: 'HARI', value: '00' },
-                { id: 'hours', label: 'JAM', value: '00' },
-                { id: 'minutes', label: 'MENIT', value: '00' },
-                { id: 'seconds', label: 'DETIK', value: '10' }
-            ];
-            
-            // Render countdown awal
-            countdownItems.forEach(item => {
-                const countdownItem = document.createElement('div');
-                countdownItem.className = 'countdown-item';
-                countdownItem.innerHTML = `
-                    <div class="countdown-number" id="${item.id}">${item.value}</div>
-                    <div class="countdown-label">${item.label}</div>
-                `;
-                countdownContainer.appendChild(countdownItem);
-            });
-            
-            // Update countdown setiap detik
-            const countdownInterval = setInterval(() => {
-                seconds--;
-                
-                if (seconds < 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('seconds').textContent = '00';
-                    
-                    // Tampilkan pesan tahun baru
-                    document.querySelector('.new-year-message h2').textContent = 'SELAMAT TAHUN BARU 2024! 🎉🎊';
-                    document.querySelector('.new-year-message p').textContent = 'Tahun baru telah tiba! Semoga penuh berkah dan kebahagiaan!';
-                    
-                    // Tambahkan efek suara (simulasi)
-                    playNewYearSound();
-                    
-                    return;
-                }
-                
-                // Format detik menjadi hari, jam, menit, detik (untuk simulasi)
-                const days = Math.floor(seconds / (24 * 60 * 60));
-                const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
-                const minutes = Math.floor((seconds % (60 * 60)) / 60);
-                const secs = seconds % 60;
-                
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = secs.toString().padStart(2, '0');
-            }, 1000);
-        }
-        
-        // Fungsi untuk memainkan efek suara tahun baru (simulasi)
-        function playNewYearSound() {
-            // Dalam implementasi nyata, ini akan memainkan audio
-            console.log("Selamat Tahun Baru! 🎉🎊");
-            
-            // Tampilkan alert khusus
-            setTimeout(() => {
-                alert("🎉 SELAMAT TAHUN BARU 2024! 🎊\n\nSemoga tahun ini membawa kebahagiaan, kesehatan, dan kesuksesan untuk kita semua!");
-            }, 500);
-        }
-        
-        // Render file spesial Tahun Baru
+        // Render file ke grid
         function renderFiles() {
             const filesGrid = document.getElementById('filesGrid');
             filesGrid.innerHTML = '';
@@ -840,92 +654,119 @@
                         <span>${file.size}</span>
                         <span>${file.date}</span>
                     </div>
-                    <div class="file-actions">
-                        <button class="file-action-btn" title="Lihat">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="file-action-btn" title="Bagikan">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="file-action-btn" title="Simpan">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
                 `;
                 
                 filesGrid.appendChild(fileCard);
             });
         }
         
-        // Render resolusi Tahun Baru
-        function renderResolutions() {
-            const resolutionList = document.getElementById('resolutionList');
-            resolutionList.innerHTML = '';
+        // Render aktivitas terbaru
+        function renderActivities() {
+            const activityList = document.getElementById('activityList');
+            activityList.innerHTML = '';
             
-            resolutions.forEach((resolution, index) => {
-                const resolutionItem = document.createElement('div');
-                resolutionItem.className = 'resolution-item';
+            recentActivities.forEach(activity => {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
                 
-                resolutionItem.innerHTML = `
-                    <div class="resolution-checkbox" data-index="${index}">
-                        <i class="fas fa-check"></i>
+                activityItem.innerHTML = `
+                    <div class="activity-icon">
+                        <i class="${activity.icon}"></i>
                     </div>
-                    <div class="resolution-text">${resolution}</div>
+                    <div class="activity-details">
+                        <h4>${activity.description}</h4>
+                        <p>${activity.time}</p>
+                    </div>
                 `;
                 
-                resolutionList.appendChild(resolutionItem);
-            });
-            
-            // Tambahkan event listener untuk checkbox
-            document.querySelectorAll('.resolution-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('click', function() {
-                    this.classList.toggle('checked');
-                    
-                    // Hitung berapa banyak resolusi yang sudah dicentang
-                    const checkedCount = document.querySelectorAll('.resolution-checkbox.checked').length;
-                    const totalCount = resolutions.length;
-                    
-                    // Update storage bar berdasarkan resolusi yang dicentang
-                    const progressPercentage = 65 + (checkedCount / totalCount) * 35;
-                    document.querySelector('.storage-used').style.width = `${progressPercentage}%`;
-                    document.querySelector('.storage-stats').innerHTML = `
-                        <span>${(6.5 + checkedCount * 0.7).toFixed(1)} GB dari 10 GB kenangan tersimpan</span>
-                        <span>${Math.round(progressPercentage)}%</span>
-                    `;
-                });
+                activityList.appendChild(activityItem);
             });
         }
         
-        // Event listener untuk tombol
+        // Tambahkan efek kembang api sederhana
+        function createFireworks() {
+            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FFFFFF'];
+            
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                // Posisi acak
+                firework.style.left = Math.random() * 100 + 'vw';
+                firework.style.top = Math.random() * 100 + 'vh';
+                
+                // Warna acak
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.boxShadow = `0 0 10px ${firework.style.backgroundColor}`;
+                
+                // Ukuran acak
+                const size = Math.random() * 6 + 2;
+                firework.style.width = size + 'px';
+                firework.style.height = size + 'px';
+                
+                // Animasi
+                firework.style.animation = `fireworkAnimation ${Math.random() * 3 + 2}s infinite alternate`;
+                
+                document.body.appendChild(firework);
+            }
+            
+            // Tambahkan style untuk animasi
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fireworkAnimation {
+                    0% { transform: translateY(0) scale(1); opacity: 1; }
+                    50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+                    100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Event listeners
         document.getElementById('uploadBtn').addEventListener('click', function() {
-            alert('Siap mengunggah kenangan indah tahun baru Anda! 🎉');
-        });
-        
-        document.getElementById('shareBtn').addEventListener('click', function() {
-            alert('Bagikan kebahagiaan tahun baru dengan orang-orang terkasih! ❤️');
-        });
-        
-        document.getElementById('memoryBtn').addEventListener('click', function() {
-            alert('Melihat kembali kenangan indah tahun 2023... 📸');
+            alert('🎉 Selamat Tahun Baru 2026! Siap mengunggah kenangan baru Anda.');
         });
         
         // Update tahun display
         document.getElementById('yearDisplay').textContent = new Date().getFullYear();
         
+        // Animasi progress bar
+        function animateProgressBar() {
+            const storageBar = document.getElementById('storageBar');
+            let width = 0;
+            const targetWidth = 65;
+            const interval = setInterval(() => {
+                if (width >= targetWidth) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    storageBar.style.width = width + '%';
+                }
+            }, 20);
+        }
+        
         // Inisialisasi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
-            createFireworks();
-            createSnowflakes();
-            createConfetti();
-            setupCountdown();
             renderFiles();
-            renderResolutions();
+            renderActivities();
+            animateProgressBar();
+            createFireworks();
             
-            // Animasi untuk progress bar
-            const storageBar = document.querySelector('.storage-used');
-            setTimeout(() => {
-                storageBar.style.width = '65%';
-            }, 300);
+            // Tambahkan efek hover pada nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Efek untuk GitHub info
+            const githubInfo = document.querySelector('.github-info');
+            githubInfo.addEventListener('click', function() {
+                window.open('https://github.com', '_blank');
+            });
         });
     </script>
 </body>
